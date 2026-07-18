@@ -4,7 +4,7 @@
     <uses-feature android:name="android.hardware.camera" android:required="false" />
 
     <application
-        android:label="authforge"
+        android:label="AuthForge"
         android:name="${applicationName}"
         android:icon="@mipmap/launcher_icon">
         <activity
