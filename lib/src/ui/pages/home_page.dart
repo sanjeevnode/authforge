@@ -27,12 +27,18 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text(
-          HomeConstants.title,
-          style: TextStyle(
-            color: AppColors.accent,
-            fontWeight: FontWeight.bold,
-          ),
+        title: const Row(
+          children: [
+            AppLogo(size: 30),
+            SizedBox(width: 10),
+            Text(
+              HomeConstants.title,
+              style: TextStyle(
+                color: AppColors.accent,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+          ],
         ),
         backgroundColor: AppColors.background,
         elevation: 0,

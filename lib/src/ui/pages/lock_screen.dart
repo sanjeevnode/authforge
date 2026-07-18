@@ -2,6 +2,7 @@ import 'package:authforge/src/core/constants/lock_constants.dart';
 import 'package:authforge/src/core/di/injection.dart';
 import 'package:authforge/src/core/theme/app_colors.dart';
 import 'package:authforge/src/domain/domain.dart';
+import 'package:authforge/src/ui/widgets/widgets.dart';
 import 'package:flutter/material.dart';
 
 /// Gates [child] behind device authentication. Locks on first launch and again
@@ -77,11 +78,7 @@ class _LockView extends StatelessWidget {
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            Icon(
-              Icons.lock_outline,
-              size: 72,
-              color: AppColors.primary.withValues(alpha: 0.7),
-            ),
+            const AppLogo(size: 88),
             const SizedBox(height: 20),
             const Text(
               LockConstants.appName,
