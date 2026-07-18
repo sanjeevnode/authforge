@@ -1,4 +1,4 @@
-package com.example.authforge
+package com.sanjeevnode.authforge
 
 import io.flutter.embedding.android.FlutterActivity
 

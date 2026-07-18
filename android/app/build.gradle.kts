@@ -6,7 +6,7 @@ plugins {
 }
 
 android {
-    namespace = "com.example.authforge"
+    namespace = "com.sanjeevnode.authforge"
     compileSdk = flutter.compileSdkVersion
     ndkVersion = flutter.ndkVersion
 
@@ -21,7 +21,7 @@ android {
 
     defaultConfig {
         // TODO: Specify your own unique Application ID (https://developer.android.com/studio/build/application-id.html).
-        applicationId = "com.example.authforge"
+        applicationId = "com.sanjeevnode.authforge"
         // You can update the following values to match your application needs.
         // For more information, see: https://flutter.dev/to/review-gradle-config.
         minSdk = 23  // flutter_secure_storage (encrypted) + local_auth need 23+
