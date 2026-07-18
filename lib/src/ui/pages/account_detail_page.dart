@@ -1,10 +1,6 @@
 import 'dart:async';
 
-import 'package:authforge/src/core/constants/account_detail_constants.dart';
-import 'package:authforge/src/core/theme/app_colors.dart';
-import 'package:authforge/src/domain/domain.dart';
-import 'package:authforge/src/ui/cubit/cubit.dart';
-import 'package:authforge/src/ui/widgets/widgets.dart';
+import 'package:authforge/src/src.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -174,12 +170,8 @@ class _AccountDetailPageState extends State<AccountDetailPage> {
 class _DetailRow extends StatelessWidget {
   final String label;
   final String value;
-  final bool mono;
-  const _DetailRow({
-    required this.label,
-    required this.value,
-    this.mono = false,
-  });
+
+  const _DetailRow({required this.label, required this.value});
 
   @override
   Widget build(BuildContext context) {
@@ -195,10 +187,10 @@ class _DetailRow extends StatelessWidget {
           const SizedBox(height: 4),
           Text(
             value,
-            style: TextStyle(
+            style: const TextStyle(
               color: AppColors.textPrimary,
               fontSize: 16,
-              fontFamily: mono ? 'monospace' : null,
+              fontFamily: AppConstants.fontFamilyMonospace,
             ),
           ),
         ],
