@@ -1,4 +1,5 @@
 // constants barrel.
+export 'package:authforge/src/core/constants/account_detail_constants.dart';
 export 'package:authforge/src/core/constants/app_constants.dart';
 export 'package:authforge/src/core/constants/home_constants.dart';
 export 'package:authforge/src/core/constants/manual_entry_constants.dart';

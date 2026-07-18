@@ -8,6 +8,7 @@ class OtpAccountModel extends OtpAccount {
     required super.label,
     required super.issuer,
     required super.secret,
+    required super.createdAt,
   });
 
   factory OtpAccountModel.fromJson(Map<String, dynamic> json) {
@@ -16,6 +17,10 @@ class OtpAccountModel extends OtpAccount {
       label: json['label'] as String,
       issuer: json['issuer'] as String,
       secret: json['secret'] as String,
+      // Backward-compat: accounts saved before createdAt existed fall back to now.
+      createdAt: json['createdAt'] != null
+          ? DateTime.parse(json['createdAt'] as String)
+          : DateTime.now().toUtc(),
     );
   }
 
@@ -24,6 +29,7 @@ class OtpAccountModel extends OtpAccount {
     'label': label,
     'issuer': issuer,
     'secret': secret,
+    'createdAt': createdAt.toUtc().toIso8601String(),
   };
 
   factory OtpAccountModel.fromEntity(OtpAccount a) => OtpAccountModel(
@@ -31,5 +37,6 @@ class OtpAccountModel extends OtpAccount {
     label: a.label,
     issuer: a.issuer,
     secret: a.secret,
+    createdAt: a.createdAt,
   );
 }

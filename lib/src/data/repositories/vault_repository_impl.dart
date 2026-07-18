@@ -49,6 +49,7 @@ class VaultRepositoryImpl implements VaultRepository {
           label: label.isEmpty ? VaultConstants.defaultLabel : label,
           issuer: issuer,
           secret: cleaned,
+          createdAt: DateTime.now().toUtc(),
         ),
       );
     } on StorageException catch (e) {
@@ -103,6 +104,7 @@ class VaultRepositoryImpl implements VaultRepository {
       label: label.isEmpty ? VaultConstants.defaultLabel : label,
       issuer: issuer.isEmpty ? VaultConstants.defaultIssuer : issuer,
       secret: secret.toUpperCase(),
+      createdAt: DateTime.now().toUtc(),
     );
   }
 

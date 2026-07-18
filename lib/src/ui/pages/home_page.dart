@@ -1,5 +1,7 @@
 import 'package:authforge/src/core/core.dart';
+import 'package:authforge/src/domain/domain.dart';
 import 'package:authforge/src/ui/cubit/cubit.dart';
+import 'package:authforge/src/ui/pages/account_detail_page.dart';
 import 'package:authforge/src/ui/pages/scan_qr_page.dart';
 import 'package:authforge/src/ui/widgets/widgets.dart';
 import 'package:flutter/material.dart';
@@ -7,6 +9,19 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
+
+  void _openDetail(BuildContext context, OtpAccount account) {
+    final cubit = context.read<VaultCubit>();
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (_) => BlocProvider.value(
+          value: cubit,
+          child: AccountDetailPage(account: account),
+        ),
+      ),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -53,7 +68,7 @@ class HomePage extends StatelessWidget {
               final account = state.accounts[i];
               return OtpCard(
                 account: account,
-                onDelete: () => context.read<VaultCubit>().delete(account.id),
+                onTap: () => _openDetail(context, account),
               );
             },
           );
