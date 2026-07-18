@@ -12,9 +12,11 @@ class AuthForgeApp extends StatelessWidget {
       title: 'AuthForge',
       debugShowCheckedModeBanner: false,
       theme: AppTheme.dark,
-      home: BlocProvider(
-        create: (_) => sl<VaultCubit>()..loadAccounts(),
-        child: const HomePage(),
+      home: AppLock(
+        child: BlocProvider(
+          create: (_) => sl<VaultCubit>()..loadAccounts(),
+          child: const HomePage(),
+        ),
       ),
     );
   }

@@ -13,6 +13,9 @@ Future<void> configureDependencies() async {
     () => const FlutterSecureStorage(),
   );
 
+  // --- Services ---
+  sl.registerLazySingleton(() => AuthLockService());
+
   // --- Authenticator: data ---
   sl.registerLazySingleton<VaultLocalDataSource>(
     () => VaultLocalDataSourceImpl(sl()),
