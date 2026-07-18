@@ -142,11 +142,7 @@ class _AccountDetailPageState extends State<AccountDetailPage> {
             label: AccountDetailConstants.accountLabel,
             value: a.label,
           ),
-          // _DetailRow(
-          //   label: AccountDetailConstants.secretLabel,
-          //   value: a.secret,
-          //   mono: true,
-          // ),
+          // Secret is intentionally NEVER displayed — it's a credential.
           _DetailRow(
             label: AccountDetailConstants.addedLabel,
             value: _formatAdded(a.createdAt),
