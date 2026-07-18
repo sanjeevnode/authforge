@@ -3,8 +3,13 @@ name: build
 on:
   push:
     branches: [main]
+    tags: ["v*"] # a version tag also builds AND publishes a Release
   pull_request:
     branches: [main]
+
+# Allow the workflow to create Releases.
+permissions:
+  contents: write
 
 jobs:
   build:
@@ -32,9 +37,17 @@ jobs:
       - name: Build APK (release)
         run: flutter build apk --release
 
-      - name: Upload APK
+      - name: Upload APK (artifact — every build)
         uses: actions/upload-artifact@v4
         with:
           name: app-release-apk
           path: build/app/outputs/flutter-apk/app-release.apk
           if-no-files-found: error
+
+      # Only on a version tag: publish a GitHub Release with the APK attached.
+      - name: Publish Release
+        if: startsWith(github.ref, 'refs/tags/v')
+        uses: softprops/action-gh-release@v2
+        with:
+          files: build/app/outputs/flutter-apk/app-release.apk
+          generate_release_notes: true
