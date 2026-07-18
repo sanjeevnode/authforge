@@ -6,7 +6,9 @@ class AppColors {
   AppColors._();
 
   // 60% — dominant background/surface family
-  static const Color background = Color(0xFF1E1B36); // slightly darker than surface
+  static const Color background = Color(
+    0xFF1E1B36,
+  ); // slightly darker than surface
   static const Color surface = Color(0xFF2E2B4E); // #2E2B4E
   static const Color surfaceHigh = Color(0xFF3A3660); // raised cards
 

@@ -1,7 +1,7 @@
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../domain/domain.dart';
+import 'package:authforge/src/domain/domain.dart';
 
 part 'vault_state.dart';
 
@@ -18,18 +18,22 @@ class VaultCubit extends Cubit<VaultState> {
     required AddAccountFromUri addAccountFromUri,
     required AddAccountManual addAccountManual,
     required DeleteAccount deleteAccount,
-  })  : _getAccounts = getAccounts,
-        _addAccountFromUri = addAccountFromUri,
-        _addAccountManual = addAccountManual,
-        _deleteAccount = deleteAccount,
-        super(const VaultState());
+  }) : _getAccounts = getAccounts,
+       _addAccountFromUri = addAccountFromUri,
+       _addAccountManual = addAccountManual,
+       _deleteAccount = deleteAccount,
+       super(const VaultState());
 
   Future<void> loadAccounts() async {
     emit(state.copyWith(status: VaultStatus.loading));
     final result = await _getAccounts();
     result.fold(
-      (failure) => emit(state.copyWith(
-          status: VaultStatus.error, errorMessage: failure.message)),
+      (failure) => emit(
+        state.copyWith(
+          status: VaultStatus.error,
+          errorMessage: failure.message,
+        ),
+      ),
       (accounts) =>
           emit(state.copyWith(status: VaultStatus.loaded, accounts: accounts)),
     );
@@ -39,8 +43,12 @@ class VaultCubit extends Cubit<VaultState> {
     final result = await _addAccountFromUri(uri);
     return result.fold(
       (failure) {
-        emit(state.copyWith(
-            status: VaultStatus.error, errorMessage: failure.message));
+        emit(
+          state.copyWith(
+            status: VaultStatus.error,
+            errorMessage: failure.message,
+          ),
+        );
         return false;
       },
       (_) {
@@ -55,12 +63,19 @@ class VaultCubit extends Cubit<VaultState> {
     required String issuer,
     required String secret,
   }) async {
-    final result =
-        await _addAccountManual(label: label, issuer: issuer, secret: secret);
+    final result = await _addAccountManual(
+      label: label,
+      issuer: issuer,
+      secret: secret,
+    );
     return result.fold(
       (failure) {
-        emit(state.copyWith(
-            status: VaultStatus.error, errorMessage: failure.message));
+        emit(
+          state.copyWith(
+            status: VaultStatus.error,
+            errorMessage: failure.message,
+          ),
+        );
         return false;
       },
       (_) {
@@ -73,8 +88,12 @@ class VaultCubit extends Cubit<VaultState> {
   Future<void> delete(String id) async {
     final result = await _deleteAccount(id);
     result.fold(
-      (failure) => emit(state.copyWith(
-          status: VaultStatus.error, errorMessage: failure.message)),
+      (failure) => emit(
+        state.copyWith(
+          status: VaultStatus.error,
+          errorMessage: failure.message,
+        ),
+      ),
       (_) => loadAccounts(),
     );
   }

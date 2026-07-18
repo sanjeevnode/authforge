@@ -1,5 +1,5 @@
-export 'app.dart';
-export 'core/core.dart';
-export 'data/data.dart';
-export 'domain/domain.dart';
-export 'ui/ui.dart';
+export 'package:authforge/src/app.dart';
+export 'package:authforge/src/core/core.dart';
+export 'package:authforge/src/data/data.dart';
+export 'package:authforge/src/domain/domain.dart';
+export 'package:authforge/src/ui/ui.dart';

@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../core/theme/app_colors.dart';
-import '../cubit/vault_cubit.dart';
+import 'package:authforge/src/core/constants/manual_entry_constants.dart';
+import 'package:authforge/src/core/theme/app_colors.dart';
+import 'package:authforge/src/ui/cubit/vault_cubit.dart';
 
 class ManualEntryPage extends StatefulWidget {
   const ManualEntryPage({super.key});
@@ -26,10 +27,10 @@ class _ManualEntryPageState extends State<ManualEntryPage> {
 
   Future<void> _save() async {
     final ok = await context.read<VaultCubit>().addManual(
-          issuer: _issuer.text.trim(),
-          label: _label.text.trim(),
-          secret: _secret.text.trim(),
-        );
+      issuer: _issuer.text.trim(),
+      label: _label.text.trim(),
+      secret: _secret.text.trim(),
+    );
     if (!mounted) return;
     if (ok) {
       Navigator.pop(context);
@@ -37,7 +38,9 @@ class _ManualEntryPageState extends State<ManualEntryPage> {
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
           content: Text(
-              context.read<VaultCubit>().state.errorMessage ?? 'Failed to add'),
+            context.read<VaultCubit>().state.errorMessage ??
+                ManualEntryConstants.failed,
+          ),
           backgroundColor: AppColors.error,
         ),
       );
@@ -48,7 +51,7 @@ class _ManualEntryPageState extends State<ManualEntryPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Enter Manually'),
+        title: const Text(ManualEntryConstants.title),
         backgroundColor: AppColors.background,
       ),
       body: Padding(
@@ -57,21 +60,30 @@ class _ManualEntryPageState extends State<ManualEntryPage> {
           children: [
             TextField(
               controller: _issuer,
-              decoration: const InputDecoration(hintText: 'Issuer (e.g. AuthForge)'),
+              decoration: const InputDecoration(
+                hintText: ManualEntryConstants.issuerHint,
+              ),
             ),
             const SizedBox(height: 12),
             TextField(
               controller: _label,
-              decoration: const InputDecoration(hintText: 'Account (e.g. your email)'),
+              decoration: const InputDecoration(
+                hintText: ManualEntryConstants.labelHint,
+              ),
             ),
             const SizedBox(height: 12),
             TextField(
               controller: _secret,
-              decoration: const InputDecoration(hintText: 'Secret key (base32)'),
+              decoration: const InputDecoration(
+                hintText: ManualEntryConstants.secretHint,
+              ),
               textCapitalization: TextCapitalization.characters,
             ),
             const SizedBox(height: 24),
-            ElevatedButton(onPressed: _save, child: const Text('Add account')),
+            ElevatedButton(
+              onPressed: _save,
+              child: const Text(ManualEntryConstants.addButton),
+            ),
           ],
         ),
       ),

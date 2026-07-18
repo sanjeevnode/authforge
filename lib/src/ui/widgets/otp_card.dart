@@ -3,9 +3,10 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-import '../../core/theme/app_colors.dart';
-import '../../domain/domain.dart';
-import 'countdown_ring.dart';
+import 'package:authforge/src/core/constants/otp_card_constants.dart';
+import 'package:authforge/src/core/theme/app_colors.dart';
+import 'package:authforge/src/domain/domain.dart';
+import 'package:authforge/src/ui/widgets/countdown_ring.dart';
 
 /// One account: issuer + label, the rolling 6-digit code, and the countdown ring.
 /// Owns a 1s Timer that recomputes the code as the TOTP window advances.
@@ -20,7 +21,7 @@ class OtpCard extends StatefulWidget {
 
 class _OtpCardState extends State<OtpCard> {
   Timer? _timer;
-  String _code = '------';
+  String _code = OtpCardConstants.codePlaceholder;
   int _remaining = 30;
 
   @override
@@ -43,8 +44,9 @@ class _OtpCardState extends State<OtpCard> {
     super.dispose();
   }
 
-  String get _formattedCode =>
-      _code.length == 6 ? '${_code.substring(0, 3)} ${_code.substring(3)}' : _code;
+  String get _formattedCode => _code.length == 6
+      ? '${_code.substring(0, 3)} ${_code.substring(3)}'
+      : _code;
 
   @override
   Widget build(BuildContext context) {
@@ -69,7 +71,9 @@ class _OtpCardState extends State<OtpCard> {
                   Text(
                     widget.account.label,
                     style: const TextStyle(
-                        color: AppColors.textSecondary, fontSize: 12),
+                      color: AppColors.textSecondary,
+                      fontSize: 12,
+                    ),
                   ),
                   const SizedBox(height: 8),
                   GestureDetector(
@@ -77,8 +81,9 @@ class _OtpCardState extends State<OtpCard> {
                       Clipboard.setData(ClipboardData(text: _code));
                       ScaffoldMessenger.of(context).showSnackBar(
                         const SnackBar(
-                            content: Text('Code copied'),
-                            duration: Duration(seconds: 1)),
+                          content: Text(OtpCardConstants.codeCopied),
+                          duration: Duration(seconds: 1),
+                        ),
                       );
                     },
                     child: Text(
@@ -97,8 +102,11 @@ class _OtpCardState extends State<OtpCard> {
             CountdownRing(secondsRemaining: _remaining),
             if (widget.onDelete != null)
               IconButton(
-                icon: const Icon(Icons.delete_outline,
-                    color: AppColors.textMuted, size: 20),
+                icon: const Icon(
+                  Icons.delete_outline,
+                  color: AppColors.textMuted,
+                  size: 20,
+                ),
                 onPressed: widget.onDelete,
               ),
           ],

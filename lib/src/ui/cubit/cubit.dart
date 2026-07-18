@@ -1,2 +1,2 @@
 // cubit barrel.
-export 'vault_cubit.dart';
+export 'package:authforge/src/ui/cubit/vault_cubit.dart';

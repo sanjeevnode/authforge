@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../core/theme/app_colors.dart';
+import 'package:authforge/src/core/theme/app_colors.dart';
 
 /// Circular countdown showing seconds left in the current 30s TOTP window.
 /// Ring drains as time passes; turns to warning color in the last few seconds.

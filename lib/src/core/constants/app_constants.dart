@@ -4,7 +4,8 @@ class AppConstants {
   AppConstants._();
 
   // Deployed identity server (used by the auth feature).
-  static const String apiBaseUrl = 'https://server.authforge.sanjeevnode.in/api/v1';
+  static const String apiBaseUrl =
+      'https://server.authforge.sanjeevnode.in/api/v1';
 
   static const int totpDigits = 6;
   static const int totpPeriodSeconds = 30;

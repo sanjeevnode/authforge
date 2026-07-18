@@ -2,9 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mobile_scanner/mobile_scanner.dart';
 
-import '../../core/theme/app_colors.dart';
-import '../cubit/vault_cubit.dart';
-import 'manual_entry_page.dart';
+import 'package:authforge/src/core/constants/scan_qr_constants.dart';
+import 'package:authforge/src/core/theme/app_colors.dart';
+import 'package:authforge/src/ui/cubit/vault_cubit.dart';
+import 'package:authforge/src/ui/pages/manual_entry_page.dart';
 
 class ScanQrPage extends StatefulWidget {
   const ScanQrPage({super.key});
@@ -31,8 +32,10 @@ class _ScanQrPageState extends State<ScanQrPage> {
       // let them try again / show the error
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
-          content: Text(context.read<VaultCubit>().state.errorMessage ??
-              'Invalid QR code'),
+          content: Text(
+            context.read<VaultCubit>().state.errorMessage ??
+                ScanQrConstants.invalidQr,
+          ),
           backgroundColor: AppColors.error,
         ),
       );
@@ -50,13 +53,15 @@ class _ScanQrPageState extends State<ScanQrPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Scan QR Code'),
+        title: const Text(ScanQrConstants.title),
         backgroundColor: AppColors.background,
         actions: [
           TextButton.icon(
             icon: const Icon(Icons.keyboard, color: AppColors.accent),
-            label: const Text('Manual',
-                style: TextStyle(color: AppColors.accent)),
+            label: const Text(
+              ScanQrConstants.manualAction,
+              style: TextStyle(color: AppColors.accent),
+            ),
             onPressed: () {
               final cubit = context.read<VaultCubit>();
               Navigator.pushReplacement(
@@ -88,7 +93,7 @@ class _ScanQrPageState extends State<ScanQrPage> {
           const Positioned(
             bottom: 80,
             child: Text(
-              'Position the QR code within the frame',
+              ScanQrConstants.framePrompt,
               style: TextStyle(color: Colors.white),
             ),
           ),

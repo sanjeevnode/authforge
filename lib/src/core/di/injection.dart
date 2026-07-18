@@ -1,9 +1,9 @@
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:get_it/get_it.dart';
 
-import '../../data/data.dart';
-import '../../domain/domain.dart';
-import '../../ui/cubit/vault_cubit.dart';
+import 'package:authforge/src/data/data.dart';
+import 'package:authforge/src/domain/domain.dart';
+import 'package:authforge/src/ui/cubit/vault_cubit.dart';
 
 /// Service locator. Call configureDependencies() once at startup.
 final sl = GetIt.instance;
@@ -18,9 +18,7 @@ Future<void> configureDependencies() async {
   sl.registerLazySingleton<VaultLocalDataSource>(
     () => VaultLocalDataSourceImpl(sl()),
   );
-  sl.registerLazySingleton<VaultRepository>(
-    () => VaultRepositoryImpl(sl()),
-  );
+  sl.registerLazySingleton<VaultRepository>(() => VaultRepositoryImpl(sl()));
 
   // --- Authenticator: usecases ---
   sl.registerLazySingleton(() => GetAccounts(sl()));

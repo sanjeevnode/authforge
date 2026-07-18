@@ -1,2 +1,2 @@
 // repositories barrel.
-export 'vault_repository.dart';
+export 'package:authforge/src/domain/repositories/vault_repository.dart';

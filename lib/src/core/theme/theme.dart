@@ -1,3 +1,3 @@
 // theme barrel.
-export 'app_colors.dart';
-export 'app_theme.dart';
+export 'package:authforge/src/core/theme/app_colors.dart';
+export 'package:authforge/src/core/theme/app_theme.dart';

@@ -1,11 +1,12 @@
 import 'package:dartz/dartz.dart';
 
-import '../../core/error/exceptions.dart';
-import '../../core/error/failures.dart';
-import '../../domain/entities/otp_account.dart';
-import '../../domain/repositories/vault_repository.dart';
-import '../datasources/vault_local_datasource.dart';
-import '../models/otp_account_model.dart';
+import 'package:authforge/src/core/constants/vault_constants.dart';
+import 'package:authforge/src/core/error/exceptions.dart';
+import 'package:authforge/src/core/error/failures.dart';
+import 'package:authforge/src/domain/entities/otp_account.dart';
+import 'package:authforge/src/domain/repositories/vault_repository.dart';
+import 'package:authforge/src/data/datasources/vault_local_datasource.dart';
+import 'package:authforge/src/data/models/otp_account_model.dart';
 
 class VaultRepositoryImpl implements VaultRepository {
   final VaultLocalDataSource _local;
@@ -40,15 +41,17 @@ class VaultRepositoryImpl implements VaultRepository {
   }) async {
     final cleaned = secret.replaceAll(' ', '').toUpperCase();
     if (cleaned.isEmpty) {
-      return const Left(ValidationFailure('Secret cannot be empty.'));
+      return const Left(ValidationFailure(VaultConstants.emptySecret));
     }
     try {
-      return _persist(OtpAccountModel(
-        id: _newId(),
-        label: label.isEmpty ? 'Account' : label,
-        issuer: issuer,
-        secret: cleaned,
-      ));
+      return _persist(
+        OtpAccountModel(
+          id: _newId(),
+          label: label.isEmpty ? VaultConstants.defaultLabel : label,
+          issuer: issuer,
+          secret: cleaned,
+        ),
+      );
     } on StorageException catch (e) {
       return Left(StorageFailure(e.message));
     }
@@ -79,11 +82,11 @@ class VaultRepositoryImpl implements VaultRepository {
   OtpAccountModel _parseOtpauthUri(String raw) {
     final uri = Uri.tryParse(raw);
     if (uri == null || uri.scheme != 'otpauth' || uri.host != 'totp') {
-      throw InvalidOtpUriException('Not a valid TOTP QR code.');
+      throw InvalidOtpUriException(VaultConstants.invalidTotpQr);
     }
     final secret = uri.queryParameters['secret'];
     if (secret == null || secret.isEmpty) {
-      throw InvalidOtpUriException('QR code has no secret.');
+      throw InvalidOtpUriException(VaultConstants.qrNoSecret);
     }
     // path is "/ISSUER:LABEL" or "/LABEL"; strip leading slash and decode
     final pathLabel = Uri.decodeComponent(
@@ -98,8 +101,8 @@ class VaultRepositoryImpl implements VaultRepository {
     }
     return OtpAccountModel(
       id: _newId(),
-      label: label.isEmpty ? 'Account' : label,
-      issuer: issuer.isEmpty ? 'Unknown' : issuer,
+      label: label.isEmpty ? VaultConstants.defaultLabel : label,
+      issuer: issuer.isEmpty ? VaultConstants.defaultIssuer : issuer,
       secret: secret.toUpperCase(),
     );
   }

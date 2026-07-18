@@ -1,7 +1,7 @@
 import 'package:dartz/dartz.dart';
 
-import '../../core/error/failures.dart';
-import '../entities/otp_account.dart';
+import 'package:authforge/src/core/error/failures.dart';
+import 'package:authforge/src/domain/entities/otp_account.dart';
 
 /// The vault contract. Domain defines it; data implements it.
 /// `Either<Failure, T>`: Left = failure, Right = success.

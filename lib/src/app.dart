@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import 'core/core.dart';
-import 'ui/ui.dart';
+import 'package:authforge/src/core/core.dart';
+import 'package:authforge/src/ui/ui.dart';
 
 class AuthForgeApp extends StatelessWidget {
   const AuthForgeApp({super.key});
@@ -15,7 +15,7 @@ class AuthForgeApp extends StatelessWidget {
       theme: AppTheme.dark,
       home: BlocProvider(
         create: (_) => sl<VaultCubit>()..loadAccounts(),
-        child: const AccountListPage(),
+        child: const HomePage(),
       ),
     );
   }

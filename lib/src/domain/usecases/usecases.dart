@@ -1,2 +1,2 @@
 // usecases barrel.
-export 'vault_usecases.dart';
+export 'package:authforge/src/domain/usecases/vault_usecases.dart';

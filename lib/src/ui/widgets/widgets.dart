@@ -1,3 +1,3 @@
 // widgets barrel.
-export 'countdown_ring.dart';
-export 'otp_card.dart';
+export 'package:authforge/src/ui/widgets/countdown_ring.dart';
+export 'package:authforge/src/ui/widgets/otp_card.dart';

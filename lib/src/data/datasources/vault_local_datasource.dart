@@ -2,9 +2,10 @@ import 'dart:convert';
 
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 
-import '../../core/constants/app_constants.dart';
-import '../../core/error/exceptions.dart';
-import '../models/otp_account_model.dart';
+import 'package:authforge/src/core/constants/app_constants.dart';
+import 'package:authforge/src/core/constants/vault_constants.dart';
+import 'package:authforge/src/core/error/exceptions.dart';
+import 'package:authforge/src/data/models/otp_account_model.dart';
 
 /// Persists the account list in encrypted secure storage as a JSON array.
 abstract class VaultLocalDataSource {
@@ -26,7 +27,7 @@ class VaultLocalDataSourceImpl implements VaultLocalDataSource {
           .map((e) => OtpAccountModel.fromJson(e as Map<String, dynamic>))
           .toList();
     } catch (e) {
-      throw StorageException('Failed to read vault: $e');
+      throw StorageException('${VaultConstants.readFailed}: $e');
     }
   }
 
@@ -36,7 +37,7 @@ class VaultLocalDataSourceImpl implements VaultLocalDataSource {
       final raw = jsonEncode(accounts.map((a) => a.toJson()).toList());
       await _storage.write(key: AppConstants.vaultStorageKey, value: raw);
     } catch (e) {
-      throw StorageException('Failed to write vault: $e');
+      throw StorageException('${VaultConstants.writeFailed}: $e');
     }
   }
 }

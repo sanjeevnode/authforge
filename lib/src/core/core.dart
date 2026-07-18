@@ -1,5 +1,5 @@
 // Core barrel — shared theme, constants, error types, DI.
-export 'constants/constants.dart';
-export 'di/di.dart';
-export 'error/error.dart';
-export 'theme/theme.dart';
+export 'package:authforge/src/core/constants/constants.dart';
+export 'package:authforge/src/core/di/di.dart';
+export 'package:authforge/src/core/error/error.dart';
+export 'package:authforge/src/core/theme/theme.dart';

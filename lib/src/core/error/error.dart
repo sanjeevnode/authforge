@@ -1,3 +1,3 @@
 // error barrel.
-export 'exceptions.dart';
-export 'failures.dart';
+export 'package:authforge/src/core/error/exceptions.dart';
+export 'package:authforge/src/core/error/failures.dart';

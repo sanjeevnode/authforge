@@ -1,4 +1,4 @@
 // Data barrel — datasources, models, repository implementations.
-export 'datasources/datasources.dart';
-export 'models/models.dart';
-export 'repositories/repositories.dart';
+export 'package:authforge/src/data/datasources/datasources.dart';
+export 'package:authforge/src/data/models/models.dart';
+export 'package:authforge/src/data/repositories/repositories.dart';

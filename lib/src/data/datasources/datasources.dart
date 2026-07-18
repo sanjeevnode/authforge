@@ -1,2 +1,2 @@
 // datasources barrel.
-export 'vault_local_datasource.dart';
+export 'package:authforge/src/data/datasources/vault_local_datasource.dart';

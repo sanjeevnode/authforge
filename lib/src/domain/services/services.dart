@@ -1,2 +1,2 @@
 // services barrel.
-export 'totp_service.dart';
+export 'package:authforge/src/domain/services/totp_service.dart';

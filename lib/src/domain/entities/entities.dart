@@ -1,2 +1,2 @@
 // entities barrel.
-export 'otp_account.dart';
+export 'package:authforge/src/domain/entities/otp_account.dart';

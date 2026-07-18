@@ -1,4 +1,4 @@
-import '../../domain/entities/otp_account.dart';
+import 'package:authforge/src/domain/entities/otp_account.dart';
 
 /// Data-layer version of OtpAccount: adds JSON (de)serialization for storage.
 /// Kept separate from the entity so the domain stays free of persistence concerns.
@@ -20,16 +20,16 @@ class OtpAccountModel extends OtpAccount {
   }
 
   Map<String, dynamic> toJson() => {
-        'id': id,
-        'label': label,
-        'issuer': issuer,
-        'secret': secret,
-      };
+    'id': id,
+    'label': label,
+    'issuer': issuer,
+    'secret': secret,
+  };
 
   factory OtpAccountModel.fromEntity(OtpAccount a) => OtpAccountModel(
-        id: a.id,
-        label: a.label,
-        issuer: a.issuer,
-        secret: a.secret,
-      );
+    id: a.id,
+    label: a.label,
+    issuer: a.issuer,
+    secret: a.secret,
+  );
 }

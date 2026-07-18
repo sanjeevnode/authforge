@@ -1,2 +1,2 @@
 // di barrel.
-export 'injection.dart';
+export 'package:authforge/src/core/di/injection.dart';
