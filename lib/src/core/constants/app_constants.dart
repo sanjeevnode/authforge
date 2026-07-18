@@ -12,4 +12,7 @@ class AppConstants {
 
   // secure_storage key under which the account list JSON is stored.
   static const String vaultStorageKey = 'authforge_vault_accounts';
+
+  // Font Family
+  static const String fontFamilyMonospace = 'monospace';
 }
