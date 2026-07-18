@@ -1,9 +1,8 @@
-import 'dart:async';
-
 import 'package:authforge/src/core/constants/otp_card_constants.dart';
 import 'package:authforge/src/core/theme/app_colors.dart';
 import 'package:authforge/src/domain/domain.dart';
 import 'package:authforge/src/ui/widgets/countdown_ring.dart';
+import 'package:authforge/src/ui/widgets/totp_ticker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
@@ -20,7 +19,6 @@ class OtpCard extends StatefulWidget {
 }
 
 class _OtpCardState extends State<OtpCard> {
-  Timer? _timer;
   String _code = OtpCardConstants.codePlaceholder;
   int _remaining = 30;
 
@@ -28,10 +26,13 @@ class _OtpCardState extends State<OtpCard> {
   void initState() {
     super.initState();
     _refresh();
-    _timer = Timer.periodic(const Duration(seconds: 1), (_) => _refresh());
+    // Listen to the ONE shared ticker so every card recomputes on the same tick
+    // -> all countdowns stay perfectly in sync regardless of when a card mounted.
+    totpTicker.addListener(_refresh);
   }
 
   void _refresh() {
+    if (!mounted) return;
     setState(() {
       _code = TotpService.generateCode(widget.account.secret);
       _remaining = TotpService.secondsRemaining();
@@ -40,7 +41,7 @@ class _OtpCardState extends State<OtpCard> {
 
   @override
   void dispose() {
-    _timer?.cancel();
+    totpTicker.removeListener(_refresh);
     super.dispose();
   }
 
