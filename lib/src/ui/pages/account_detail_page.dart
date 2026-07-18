@@ -146,11 +146,11 @@ class _AccountDetailPageState extends State<AccountDetailPage> {
             label: AccountDetailConstants.accountLabel,
             value: a.label,
           ),
-          _DetailRow(
-            label: AccountDetailConstants.secretLabel,
-            value: a.secret,
-            mono: true,
-          ),
+          // _DetailRow(
+          //   label: AccountDetailConstants.secretLabel,
+          //   value: a.secret,
+          //   mono: true,
+          // ),
           _DetailRow(
             label: AccountDetailConstants.addedLabel,
             value: _formatAdded(a.createdAt),
