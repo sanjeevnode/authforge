@@ -1,9 +1,8 @@
-import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-
 import 'package:authforge/src/core/constants/manual_entry_constants.dart';
 import 'package:authforge/src/core/theme/app_colors.dart';
 import 'package:authforge/src/ui/cubit/vault_cubit.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class ManualEntryPage extends StatefulWidget {
   const ManualEntryPage({super.key});

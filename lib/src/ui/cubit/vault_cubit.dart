@@ -1,7 +1,6 @@
+import 'package:authforge/src/domain/domain.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
-import 'package:authforge/src/domain/domain.dart';
 
 part 'vault_state.dart';
 

@@ -1,8 +1,7 @@
-import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-
 import 'package:authforge/src/core/core.dart';
 import 'package:authforge/src/ui/ui.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class AuthForgeApp extends StatelessWidget {
   const AuthForgeApp({super.key});

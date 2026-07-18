@@ -1,10 +1,9 @@
-import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-
 import 'package:authforge/src/core/core.dart';
 import 'package:authforge/src/ui/cubit/cubit.dart';
 import 'package:authforge/src/ui/pages/scan_qr_page.dart';
 import 'package:authforge/src/ui/widgets/widgets.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});

@@ -1,11 +1,10 @@
-import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:mobile_scanner/mobile_scanner.dart';
-
 import 'package:authforge/src/core/constants/scan_qr_constants.dart';
 import 'package:authforge/src/core/theme/app_colors.dart';
 import 'package:authforge/src/ui/cubit/vault_cubit.dart';
 import 'package:authforge/src/ui/pages/manual_entry_page.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:mobile_scanner/mobile_scanner.dart';
 
 class ScanQrPage extends StatefulWidget {
   const ScanQrPage({super.key});

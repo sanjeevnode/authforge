@@ -1,12 +1,11 @@
 import 'dart:async';
 
-import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-
 import 'package:authforge/src/core/constants/otp_card_constants.dart';
 import 'package:authforge/src/core/theme/app_colors.dart';
 import 'package:authforge/src/domain/domain.dart';
 import 'package:authforge/src/ui/widgets/countdown_ring.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 /// One account: issuer + label, the rolling 6-digit code, and the countdown ring.
 /// Owns a 1s Timer that recomputes the code as the TOTP window advances.

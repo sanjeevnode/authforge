@@ -1,6 +1,5 @@
-import 'package:flutter_test/flutter_test.dart';
-
 import 'package:authforge/src/domain/services/totp_service.dart';
+import 'package:flutter_test/flutter_test.dart';
 
 void main() {
   test('TOTP code is 6 digits and deterministic for a fixed time', () {

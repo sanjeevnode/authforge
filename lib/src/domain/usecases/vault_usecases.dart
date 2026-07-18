@@ -1,8 +1,7 @@
-import 'package:dartz/dartz.dart';
-
 import 'package:authforge/src/core/error/failures.dart';
 import 'package:authforge/src/domain/entities/otp_account.dart';
 import 'package:authforge/src/domain/repositories/vault_repository.dart';
+import 'package:dartz/dartz.dart';
 
 /// Use-cases: the actions the UI can perform. Thin wrappers over the repository,
 /// but they're the presentation layer's only entry point into domain logic.

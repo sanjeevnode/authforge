@@ -1,9 +1,8 @@
-import 'package:flutter_secure_storage/flutter_secure_storage.dart';
-import 'package:get_it/get_it.dart';
-
 import 'package:authforge/src/data/data.dart';
 import 'package:authforge/src/domain/domain.dart';
 import 'package:authforge/src/ui/cubit/vault_cubit.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
+import 'package:get_it/get_it.dart';
 
 /// Service locator. Call configureDependencies() once at startup.
 final sl = GetIt.instance;
